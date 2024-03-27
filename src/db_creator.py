@@ -13,14 +13,17 @@ DB_NAME = "data.db"
 # Function to import a CSV file into a SQLite database
 def csv_to_sqlite(csv_file: Path, table_name: str, conn: sqlite3.Connection):
     df = pd.read_csv(csv_file)
+    # Convert all column names to lowercase
+    df.columns = df.columns.str.lower()
+
     # Assuming all IDs are integers, set the ID column as the primary key
-    if "ID" in df.columns:
+    if "id" in df.columns:
         df.to_sql(
             table_name,
             conn,
             if_exists="replace",
             index=False,
-            dtype={"ID": "INTEGER PRIMARY KEY"},
+            dtype={"id": "INTEGER PRIMARY KEY"},
         )
     else:
         df.to_sql(table_name, conn, if_exists="replace", index=False)
@@ -35,7 +38,7 @@ if __name__ == "__main__":
     # Iterate over CSV files and import them into the database
     for csv_file in CSV_DIR.glob("*.csv"):
         table_name = csv_file.stem
-        csv_to_sqlite(csv_file, table_name, conn)
+        csv_to_sqlite(csv_file, table_name.lower(), conn)
 
     # Close the connection
     conn.close()
