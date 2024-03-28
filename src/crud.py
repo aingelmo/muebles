@@ -1,6 +1,16 @@
 from dataclasses import dataclass
 
 from models import Article, Dimension, Finishing, Material
+from pydantic import BaseModel
+
+
+class DesiredArticle(BaseModel):
+    """Pydantic model for the desired article."""
+
+    name: str
+    material: str
+    finishing: str
+    dimensions: tuple[int, int, int]
 
 
 @dataclass
@@ -58,7 +68,7 @@ class Finishings:
 class Dimensions:
     article_id: int
 
-    def list_dimensions(self, session) -> dict[int, tuple[int, int, int]] | None:
+    def list_dimensions(self, session) -> dict[int, dict[str, int]] | None:
         dimensions = (
             session.query(Dimension.length, Dimension.width, Dimension.thickness)
             .filter(Dimension.article_id == self.article_id)
@@ -66,7 +76,10 @@ class Dimensions:
         )
         if not dimensions:
             return None
-        return {idx: (row[0], row[1], row[2]) for idx, row in enumerate(dimensions)}
+        return {
+            idx: {"length": row[0], "width": row[1], "thickness": row[2]}
+            for idx, row in enumerate(dimensions)
+        }
 
     def seek_price(self, dimensions: tuple[int, int, int], session) -> float | None:
         dimension = (

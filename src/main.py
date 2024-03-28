@@ -1,36 +1,64 @@
 import database
-from crud import ArticleSelector, Dimensions, Finishings, Materials
+from crud import ArticleSelector, DesiredArticle, Dimensions, Finishings, Materials
+from fastapi import Depends, FastAPI, HTTPException
 
-if __name__ == "__main__":
-    session = database.SessionLocal()
+app = FastAPI()
 
-    article = input(
-        f"Enter the article name: {ArticleSelector().list_articles(session)}\n"
-    )
-    article_id = ArticleSelector().find_article_id(article, session) or exit()
 
-    materials = Materials(article_id=article_id)
-    material = input(f"Select material: {materials.list_materials(session)}\n")
-    material_price = (
-        materials.seek_price(material, session) if material is not None else exit()
-    )
-    print(f"Price: {material_price}")
+def get_db():
+    db = database.SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-    finishings = Finishings(article_id=article_id)
-    finishing = input(f"Select finishing: {finishings.list_finishings(session)}\n")
-    finishing_price = (
-        finishings.seek_price(finishing, session) if finishing is not None else exit()
-    )
-    print(f"Price: {finishing_price}")
 
-    dimensions = Dimensions(article_id=article_id)
-    dimension_list = dimensions.list_dimensions(session)
-    dimension = int(input(f"Select dimension: {dimension_list}\n"))
-    dimension_price = (
-        dimensions.seek_price(dimension_list[dimension], session)
-        if dimension_list
-        else exit()
-    )
-    print(f"Price: {dimension_price}")
+@app.get("/articles/all")
+def list_articles(session=Depends(get_db)):
+    articles = ArticleSelector().list_articles(session)
+    if not articles:
+        raise HTTPException(status_code=404, detail="Articles not found")
+    return articles
 
-    print(f"Total price: {material_price + finishing_price + dimension_price}")  # type: ignore
+
+@app.get("/articles/{article_name}")
+def get_article_id(article_name: str, session=Depends(get_db)):
+    article_id = ArticleSelector().find_article_id(article_name, session)
+    if not article_id:
+        raise HTTPException(status_code=404, detail="Article not found")
+    return article_id
+
+
+@app.get("/articles/id/{article_id}")
+def list_possibilities(article_id: int, session=Depends(get_db)):
+    materials = Materials(article_id=article_id).list_materials(session)
+    finishings = Finishings(article_id=article_id).list_finishings(session)
+    dimensions = Dimensions(article_id=article_id).list_dimensions(session)
+    return {"materials": materials, "finishings": finishings, "dimensions": dimensions}
+
+
+@app.get("/materials/{article_id}/{material_name}")
+def get_price_material(article_id: int, material_name: str, session=Depends(get_db)):
+    price = Materials(article_id=article_id).seek_price(material_name, session)
+    if not price:
+        raise HTTPException(status_code=404, detail="Material not found")
+    return price
+
+
+@app.get("/finishing/{article_id}/{finishing_name}")
+def get_price_finishing(article_id: int, finishing_name: str, session=Depends(get_db)):
+    price = Finishings(article_id=article_id).seek_price(finishing_name, session)
+    if not price:
+        raise HTTPException(status_code=404, detail="Finishing not found")
+    return price
+
+
+@app.get("/dimensions/{article_id}/l={length}&w={width}&t={thickness}")
+def get_price_dimensions(
+    article_id: int, length: int, width: int, thickness: int, session=Depends(get_db)
+):
+    dimensions = (length, width, thickness)
+    price = Dimensions(article_id=article_id).seek_price(dimensions, session)
+    if not price:
+        raise HTTPException(status_code=404, detail="Dimensions not found")
+    return price
