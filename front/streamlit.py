@@ -1,20 +1,17 @@
-import numpy as np
-import pandas as pd
 import requests
-
 import streamlit as st
 
 st.title("API for the model")
 
-available_articles_request = requests.get("http://localhost:8000/articles/all")
+available_articles_request = requests.get("http://34.148.201.53/articles/all")
 available_articles = available_articles_request.json()
 
 desired_article = st.selectbox("Desired article", available_articles)
 
-article_id_request = requests.get(f"http://localhost:8000/articles/{desired_article}")
+article_id_request = requests.get(f"http://34.148.201.53/articles/{desired_article}")
 article_id = article_id_request.json()
 
-possibilities_request = requests.get(f"http://localhost:8000/articles/id/{article_id}")
+possibilities_request = requests.get(f"http://34.148.201.53/articles/id/{article_id}")
 possibilities = possibilities_request.json()
 
 
@@ -40,19 +37,19 @@ desired_thickness = st.selectbox(
 )
 
 materials_request = requests.get(
-    f"http://localhost:8000/materials/{article_id}/{desired_material}"
+    f"http://34.148.201.53/materials/{article_id}/{desired_material}"
 )
 material_cost = materials_request.json()
 st.write(f"Material cost: {material_cost}")
 
 finishing_request = requests.get(
-    f"http://localhost:8000/finishing/{article_id}/{desired_finishing}"
+    f"http://34.148.201.53/finishing/{article_id}/{desired_finishing}"
 )
 finishing_cost = finishing_request.json()
 st.write(f"Finishing cost: {finishing_cost}")
 
 dimensions_request = requests.get(
-    f"http://localhost:8000/dimensions/{article_id}/l={desired_length}&w={desired_width}&t={desired_thickness}"
+    f"http://34.148.201.53/dimensions/{article_id}/l={desired_length}&w={desired_width}&t={desired_thickness}"
 )
 dimensions_cost = dimensions_request.json()
 st.write(f"Dimensions cost: {dimensions_cost}")
