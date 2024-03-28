@@ -1,6 +1,7 @@
-import database
-from crud import ArticleSelector, DesiredArticle, Dimensions, Finishings, Materials
 from fastapi import Depends, FastAPI, HTTPException
+
+from app import database
+from app.crud import ArticleSelector, DesiredArticle, Dimensions, Finishings, Materials
 
 app = FastAPI()
 

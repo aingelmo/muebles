@@ -1,6 +1,7 @@
-from config import POSTGRES_SETTINGS
 from sqlalchemy import URL, create_engine
 from sqlalchemy.orm import sessionmaker
+
+from app.config import POSTGRES_SETTINGS
 
 connection_string = URL.create(
     "postgresql",

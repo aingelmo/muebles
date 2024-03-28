@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 
-from models import Article, Dimension, Finishing, Material
 from pydantic import BaseModel
+
+from app.models import Article, Dimension, Finishing, Material
 
 
 class DesiredArticle(BaseModel):
