@@ -1,12 +1,6 @@
 from dataclasses import dataclass
 
-import models
 from models import Article, Dimension, Finishing, Material
-from sqlalchemy.orm import Session
-
-
-def get_article(db: Session, article_id: int):
-    return db.query(models.Article).filter(models.Article.id == article_id).first()
 
 
 @dataclass
