@@ -1,0 +1,39 @@
+{
+    "id": 3,
+    "name": "bookshelf",
+    "description": "a wooden bookshelf",
+    "dimensions": [
+        {
+            "length": 180,
+            "width": 90,
+            "thickness": 7,
+            "price": 800
+        },
+        {
+            "length": 175,
+            "width": 85,
+            "thickness": 8,
+            "price": 400
+        }
+    ],
+    "materials": [
+        {
+            "name": "teak",
+            "price": 1200
+        },
+        {
+            "name": "ash",
+            "price": 700
+        }
+    ],
+    "finishings": [
+        {
+            "name": "paint",
+            "price": 90
+        },
+        {
+            "name": "enamel",
+            "price": 35
+        }
+    ]
+}

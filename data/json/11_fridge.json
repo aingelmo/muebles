@@ -1,0 +1,39 @@
+{
+    "id": 11,
+    "name": "fridge",
+    "description": "a large fridge",
+    "dimensions": [
+        {
+            "length": 80,
+            "width": 70,
+            "thickness": 3,
+            "price": 120
+        },
+        {
+            "length": 75,
+            "width": 65,
+            "thickness": 4,
+            "price": 60
+        }
+    ],
+    "materials": [
+        {
+            "name": "walnut",
+            "price": 800
+        },
+        {
+            "name": "birch",
+            "price": 300
+        }
+    ],
+    "finishings": [
+        {
+            "name": "varnish",
+            "price": 80
+        },
+        {
+            "name": "oil",
+            "price": 30
+        }
+    ]
+}

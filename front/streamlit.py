@@ -3,58 +3,75 @@ import streamlit as st
 
 API_HOST = st.secrets["api_host"]
 
+
+def format_option(option):
+    if isinstance(option, dict) and "name" in option:
+        return option["name"]
+    else:
+        return str(option)
+
+
 st.title("API for the model")
 
-available_articles_request = requests.get(f"http://{API_HOST}/articles/all")
-available_articles = available_articles_request.json()
+available_articles = requests.get(f"http://{API_HOST}/articles/all").json()
 
-desired_article = st.selectbox("Desired article", available_articles)
+article_names = [article["name"] for article in available_articles]
 
-article_id_request = requests.get(f"http://{API_HOST}/articles/{desired_article}")
-article_id = article_id_request.json()
+desired_article = st.selectbox(
+    "Desired article", available_articles, index=None, format_func=format_option
+)
 
-possibilities_request = requests.get(f"http://{API_HOST}/articles/id/{article_id}")
-possibilities = possibilities_request.json()
+if not desired_article:
+    st.error("Please select an article")
+    st.stop()
 
+article = requests.get(f"http://{API_HOST}/articles/{desired_article['doc_id']}").json()
 
-possible_dimensions = {
-    "length": set(
-        dimension["length"] for _, dimension in possibilities["dimensions"].items()
-    ),
-    "width": set(
-        dimension["width"] for _, dimension in possibilities["dimensions"].items()
-    ),
-    "thickness": set(
-        dimension["thickness"] for _, dimension in possibilities["dimensions"].items()
-    ),
+# Use the format_func parameter to display only the names
+desired_material = st.selectbox(
+    "Desired material", article["materials"], format_func=format_option
+)
+desired_material_cost = desired_material["price"]
+
+desired_finishing = st.selectbox(
+    "Desired finishing", article["finishings"], format_func=format_option
+)
+desired_finishing_cost = desired_finishing["price"]
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    unique_lengths = sorted(set([dim["length"] for dim in article["dimensions"]]))
+    selected_length = st.selectbox("Select Length", unique_lengths)
+
+with col2:
+    width_options = [
+        dim["width"]
+        for dim in article["dimensions"]
+        if dim["length"] == selected_length
+    ]
+    selected_width = st.selectbox("Select Width", width_options)
+
+with col3:
+    thickness_options = [
+        dim["thickness"]
+        for dim in article["dimensions"]
+        if dim["length"] == selected_length
+    ]
+    selected_thickness = st.selectbox("Select Thickness", thickness_options)
+
+final_dimensions = {
+    "length": selected_length,
+    "width": selected_width,
+    "thickness": selected_thickness,
 }
 
 
-desired_material = st.radio("Desired material", possibilities["materials"])
-desired_finishing = st.radio("Desired finishing", possibilities["finishings"])
-desired_length = st.selectbox("Desired length", list(possible_dimensions["length"]))
-desired_width = st.selectbox("Desired width", list(possible_dimensions["width"]))
-desired_thickness = st.selectbox(
-    "Desired thickness", list(possible_dimensions["thickness"])
-)
+st.write(f"Material cost: {desired_material_cost}")
+st.write(f"Finishing cost: {desired_finishing_cost}")
+st.write(f"Dimensions cost: {final_dimensions['thickness']}")
 
-materials_request = requests.get(
-    f"http://{API_HOST}/materials/{article_id}/{desired_material}"
+total_cost = (
+    desired_material_cost + final_dimensions["thickness"] + desired_finishing_cost
 )
-material_cost = materials_request.json()
-st.write(f"Material cost: {material_cost}")
-
-finishing_request = requests.get(
-    f"http://{API_HOST}/finishing/{article_id}/{desired_finishing}"
-)
-finishing_cost = finishing_request.json()
-st.write(f"Finishing cost: {finishing_cost}")
-
-dimensions_request = requests.get(
-    f"http://{API_HOST}/dimensions/{article_id}/l={desired_length}&w={desired_width}&t={desired_thickness}"
-)
-dimensions_cost = dimensions_request.json()
-st.write(f"Dimensions cost: {dimensions_cost}")
-
-total_cost = material_cost + finishing_cost + dimensions_cost
-st.write(f"Total cost: {total_cost}")
+st.subheader(f"The total cost is: {total_cost}")

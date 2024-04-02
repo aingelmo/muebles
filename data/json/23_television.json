@@ -1,0 +1,39 @@
+{
+    "id": 23,
+    "name": "television",
+    "description": "a flat-screen television",
+    "dimensions": [
+        {
+            "length": 190,
+            "width": 80,
+            "thickness": 7,
+            "price": 700
+        },
+        {
+            "length": 185,
+            "width": 75,
+            "thickness": 8,
+            "price": 350
+        }
+    ],
+    "materials": [
+        {
+            "name": "mahogany",
+            "price": 400
+        },
+        {
+            "name": "cedar",
+            "price": 200
+        }
+    ],
+    "finishings": [
+        {
+            "name": "lacquer",
+            "price": 50
+        },
+        {
+            "name": "dye",
+            "price": 20
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "id": 14,
+    "name": "microwave",
+    "description": " a stainless steel microwave",
+    "dimensions": [
+        {
+            "length": 150,
+            "width": 70,
+            "thickness": 5,
+            "price": 400
+        },
+        {
+            "length": 145,
+            "width": 65,
+            "thickness": 6,
+            "price": 200
+        }
+    ],
+    "materials": [
+        {
+            "name": "beech",
+            "price": 900
+        },
+        {
+            "name": "spruce",
+            "price": 400
+        }
+    ],
+    "finishings": [
+        {
+            "name": "varnish",
+            "price": 75
+        },
+        {
+            "name": "oil",
+            "price": 40
+        }
+    ]
+}

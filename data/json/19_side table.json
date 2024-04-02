@@ -1,0 +1,39 @@
+{
+    "id": 19,
+    "name": "side table",
+    "description": "a small and practical side table",
+    "dimensions": [
+        {
+            "length": 110,
+            "width": 50,
+            "thickness": 4,
+            "price": 150
+        },
+        {
+            "length": 105,
+            "width": 45,
+            "thickness": 5,
+            "price": 75
+        }
+    ],
+    "materials": [
+        {
+            "name": "walnut",
+            "price": 800
+        },
+        {
+            "name": "birch",
+            "price": 300
+        }
+    ],
+    "finishings": [
+        {
+            "name": "lacquer",
+            "price": 80
+        },
+        {
+            "name": "dye",
+            "price": 30
+        }
+    ]
+}

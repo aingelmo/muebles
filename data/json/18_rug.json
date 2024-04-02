@@ -1,0 +1,39 @@
+{
+    "id": 18,
+    "name": "rug",
+    "description": "a soft rug",
+    "dimensions": [
+        {
+            "length": 110,
+            "width": 50,
+            "thickness": 4,
+            "price": 150
+        },
+        {
+            "length": 105,
+            "width": 45,
+            "thickness": 5,
+            "price": 75
+        }
+    ],
+    "materials": [
+        {
+            "name": "acacia",
+            "price": 200
+        },
+        {
+            "name": "cedar",
+            "price": 50
+        }
+    ],
+    "finishings": [
+        {
+            "name": "varnish",
+            "price": 95
+        },
+        {
+            "name": "oil",
+            "price": 50
+        }
+    ]
+}

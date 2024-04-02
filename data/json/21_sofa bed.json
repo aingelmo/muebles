@@ -1,0 +1,39 @@
+{
+    "id": 21,
+    "name": "sofa bed",
+    "description": "a sofa that converts into a bed",
+    "dimensions": [
+        {
+            "length": 140,
+            "width": 60,
+            "thickness": 5,
+            "price": 250
+        },
+        {
+            "length": 135,
+            "width": 55,
+            "thickness": 6,
+            "price": 125
+        }
+    ],
+    "materials": [
+        {
+            "name": "maple",
+            "price": 600
+        },
+        {
+            "name": "cherry",
+            "price": 150
+        }
+    ],
+    "finishings": [
+        {
+            "name": "varnish",
+            "price": 60
+        },
+        {
+            "name": "oil",
+            "price": 25
+        }
+    ]
+}

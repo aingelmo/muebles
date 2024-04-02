@@ -1,0 +1,39 @@
+{
+    "id": 15,
+    "name": "mirror",
+    "description": "a full-length mirror",
+    "dimensions": [
+        {
+            "length": 160,
+            "width": 90,
+            "thickness": 6,
+            "price": 500
+        },
+        {
+            "length": 155,
+            "width": 85,
+            "thickness": 7,
+            "price": 250
+        }
+    ],
+    "materials": [
+        {
+            "name": "hickory",
+            "price": 700
+        },
+        {
+            "name": "willow",
+            "price": 350
+        }
+    ],
+    "finishings": [
+        {
+            "name": "lacquer",
+            "price": 65
+        },
+        {
+            "name": "dye",
+            "price": 10
+        }
+    ]
+}

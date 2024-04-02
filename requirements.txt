@@ -1,5 +1,6 @@
+cryptography==42.0.5
 fastapi==0.110.0
+firebase-admin==6.5.0
+grpcio-status==1.62.1
 pydantic-settings==2.2.1
-psycopg2-binary==2.9.9
-sqlalchemy==2.0.29
 uvicorn==0.29.0

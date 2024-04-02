@@ -1,0 +1,39 @@
+{
+    "id": 25,
+    "name": "vacuum cleaner",
+    "description": "a bagless vacuum cleaner",
+    "dimensions": [
+        {
+            "length": 130,
+            "width": 70,
+            "thickness": 5,
+            "price": 350
+        },
+        {
+            "length": 125,
+            "width": 65,
+            "thickness": 6,
+            "price": 175
+        }
+    ],
+    "materials": [
+        {
+            "name": "oak",
+            "price": 1000
+        },
+        {
+            "name": "pine",
+            "price": 500
+        }
+    ],
+    "finishings": [
+        {
+            "name": "varnish",
+            "price": 70
+        },
+        {
+            "name": "oil",
+            "price": 20
+        }
+    ]
+}
