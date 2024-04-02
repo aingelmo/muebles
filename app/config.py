@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    env: str = Field(default="development")
+    env: str = Field(default=None)
     credentials: str = Field(default="firebaseapp/credentials.json")
 
     model_config = SettingsConfigDict(

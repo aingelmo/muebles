@@ -8,6 +8,8 @@ if ENV == "prod":
 else:
     cred = credentials.Certificate(CREDENTIALS)
     initialize_app(cred)
+else:
+    initialize_app()
 
 db = firestore.client()
 
