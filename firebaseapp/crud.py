@@ -1,8 +1,12 @@
 from firebase_admin import credentials, firestore, initialize_app
 
+from firebaseapp.config import CREDENTIALS, ENV
+
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("sa.json")
-initialize_app(cred)
+if ENV == "development":
+    cred = credentials.Certificate(CREDENTIALS)
+    initialize_app(cred)
+
 db = firestore.client()
 
 
