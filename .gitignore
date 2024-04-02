@@ -163,3 +163,4 @@ cython_debug/
 notebooks/
 *.db
 secrets.toml
+sa.json
