@@ -3,11 +3,11 @@ from firebase_admin import credentials, firestore, initialize_app
 from app.config import CREDENTIALS, ENV
 
 # Initialize Firebase Admin SDK
-if ENV == "prod":
-    initialize_app()
-else:
+if ENV == "development":
     cred = credentials.Certificate(CREDENTIALS)
     initialize_app(cred)
+else:
+    initialize_app()
 
 db = firestore.client()
 
