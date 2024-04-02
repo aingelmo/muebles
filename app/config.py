@@ -4,14 +4,17 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class PostgresSettings(BaseSettings):
-    user: str = Field(validation_alias="POSTGRES_USER")
-    password: str = Field(validation_alias="POSTGRES_PASSWORD")
-    host: str = Field(validation_alias="POSTGRES_HOST")
-    db_name: str = Field(validation_alias="POSTGRES_DB")
+class Settings(BaseSettings):
+    env: str = Field(default="development")
+    credentials: str = Field(default="firebaseapp/credentials.json")
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
 
-POSTGRES_SETTINGS = PostgresSettings()  # type: ignore
 ROOT_DIR = Path(__file__).parents[1]
+
+settings = Settings()
+ENV = settings.env
+CREDENTIALS = settings.credentials
