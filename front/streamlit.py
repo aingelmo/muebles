@@ -25,8 +25,7 @@ if not desired_article:
     st.error("Please select an article")
     st.stop()
 
-article = requests.get(f"http://{API_HOST}/articles/{desired_article["doc_id"]}").json()
-
+article = requests.get(f"http://{API_HOST}/articles/{desired_article['doc_id']}").json()
 
 # Use the format_func parameter to display only the names
 desired_material = st.selectbox(
@@ -34,21 +33,45 @@ desired_material = st.selectbox(
 )
 desired_material_cost = desired_material["price"]
 
-
 desired_finishing = st.selectbox(
     "Desired finishing", article["finishings"], format_func=format_option
 )
 desired_finishing_cost = desired_finishing["price"]
 
-desired_dimensions = st.selectbox(
-    "Desired dimensions", article["dimensions"], format_func=format_option
-)
-desired_dimensions_cost = desired_dimensions["price"]
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    unique_lengths = sorted(set([dim["length"] for dim in article["dimensions"]]))
+    selected_length = st.selectbox("Select Length", unique_lengths)
+
+with col2:
+    width_options = [
+        dim["width"]
+        for dim in article["dimensions"]
+        if dim["length"] == selected_length
+    ]
+    selected_width = st.selectbox("Select Width", width_options)
+
+with col3:
+    thickness_options = [
+        dim["thickness"]
+        for dim in article["dimensions"]
+        if dim["length"] == selected_length
+    ]
+    selected_thickness = st.selectbox("Select Thickness", thickness_options)
+
+final_dimensions = {
+    "length": selected_length,
+    "width": selected_width,
+    "thickness": selected_thickness,
+}
+
 
 st.write(f"Material cost: {desired_material_cost}")
 st.write(f"Finishing cost: {desired_finishing_cost}")
-st.write(f"Dimensions cost: {desired_dimensions_cost}")
+st.write(f"Dimensions cost: {final_dimensions['thickness']}")
 
-st.write(
-    f"The total cost is: {desired_material_cost + desired_dimensions_cost + desired_finishing_cost}"
+total_cost = (
+    desired_material_cost + final_dimensions["thickness"] + desired_finishing_cost
 )
+st.subheader(f"The total cost is: {total_cost}")
