@@ -5,56 +5,36 @@ API_HOST = st.secrets["api_host"]
 
 st.title("API for the model")
 
-available_articles_request = requests.get(f"http://{API_HOST}/articles/all")
-available_articles = available_articles_request.json()
+available_articles = requests.get(f"http://{API_HOST}/articles/all").json()
 
-desired_article = st.selectbox("Desired article", available_articles)
-
-article_id_request = requests.get(f"http://{API_HOST}/articles/{desired_article}")
-article_id = article_id_request.json()
-
-possibilities_request = requests.get(f"http://{API_HOST}/articles/id/{article_id}")
-possibilities = possibilities_request.json()
+article_names = [article["name"] for article in available_articles]
 
 
-possible_dimensions = {
-    "length": set(
-        dimension["length"] for _, dimension in possibilities["dimensions"].items()
-    ),
-    "width": set(
-        dimension["width"] for _, dimension in possibilities["dimensions"].items()
-    ),
-    "thickness": set(
-        dimension["thickness"] for _, dimension in possibilities["dimensions"].items()
-    ),
-}
+desired_article_name = st.selectbox("Desired article", article_names)
+desired_article_id = [
+    article["doc_id"]
+    for article in available_articles
+    if article["name"] == desired_article_name
+][0]
+
+article = requests.get(f"http://{API_HOST}/articles/{desired_article_id}").json()
 
 
-desired_material = st.radio("Desired material", possibilities["materials"])
-desired_finishing = st.radio("Desired finishing", possibilities["finishings"])
-desired_length = st.selectbox("Desired length", list(possible_dimensions["length"]))
-desired_width = st.selectbox("Desired width", list(possible_dimensions["width"]))
-desired_thickness = st.selectbox(
-    "Desired thickness", list(possible_dimensions["thickness"])
+desired_material = st.selectbox("Desired material", article["materials"])
+desired_material_cost = desired_material["price"]
+
+desired_dimensions = st.selectbox("Desired dimensions", article["dimensions"])
+desired_dimensions_cost = desired_dimensions["price"]
+
+desired_finishing = st.selectbox("Desired finishing", article["finishings"])
+desired_finishing_cost = desired_finishing["price"]
+
+st.write(f"Material cost: {desired_material_cost}")
+st.write(f"Dimensions cost: {desired_dimensions_cost}")
+st.write(f"Finishing cost: {desired_finishing_cost}")
+
+st.write(
+    f"The total cost is: {desired_material_cost + desired_dimensions_cost + desired_finishing_cost}"
 )
 
-materials_request = requests.get(
-    f"http://{API_HOST}/materials/{article_id}/{desired_material}"
-)
-material_cost = materials_request.json()
-st.write(f"Material cost: {material_cost}")
-
-finishing_request = requests.get(
-    f"http://{API_HOST}/finishing/{article_id}/{desired_finishing}"
-)
-finishing_cost = finishing_request.json()
-st.write(f"Finishing cost: {finishing_cost}")
-
-dimensions_request = requests.get(
-    f"http://{API_HOST}/dimensions/{article_id}/l={desired_length}&w={desired_width}&t={desired_thickness}"
-)
-dimensions_cost = dimensions_request.json()
-st.write(f"Dimensions cost: {dimensions_cost}")
-
-total_cost = material_cost + finishing_cost + dimensions_cost
-st.write(f"Total cost: {total_cost}")
+st.json(article)
