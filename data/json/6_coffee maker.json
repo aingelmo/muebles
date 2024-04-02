@@ -1,0 +1,39 @@
+{
+    "id": 6,
+    "name": "coffee maker",
+    "description": "a drip coffee maker",
+    "dimensions": [
+        {
+            "length": 180,
+            "width": 90,
+            "thickness": 7,
+            "price": 800
+        },
+        {
+            "length": 175,
+            "width": 85,
+            "thickness": 8,
+            "price": 400
+        }
+    ],
+    "materials": [
+        {
+            "name": "rosewood",
+            "price": 1500
+        },
+        {
+            "name": "ebony",
+            "price": 800
+        }
+    ],
+    "finishings": [
+        {
+            "name": "lacquer",
+            "price": 85
+        },
+        {
+            "name": "dye",
+            "price": 45
+        }
+    ]
+}

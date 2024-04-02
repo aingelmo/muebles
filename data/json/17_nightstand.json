@@ -1,0 +1,39 @@
+{
+    "id": 17,
+    "name": "nightstand",
+    "description": "a nightstand with drawers",
+    "dimensions": [
+        {
+            "length": 130,
+            "width": 70,
+            "thickness": 5,
+            "price": 350
+        },
+        {
+            "length": 125,
+            "width": 65,
+            "thickness": 6,
+            "price": 175
+        }
+    ],
+    "materials": [
+        {
+            "name": "rosewood",
+            "price": 1500
+        },
+        {
+            "name": "ebony",
+            "price": 800
+        }
+    ],
+    "finishings": [
+        {
+            "name": "paint",
+            "price": 85
+        },
+        {
+            "name": "enamel",
+            "price": 45
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "id": 12,
+    "name": "iron",
+    "description": "a steam iron",
+    "dimensions": [
+        {
+            "length": 100,
+            "width": 80,
+            "thickness": 4,
+            "price": 200
+        },
+        {
+            "length": 95,
+            "width": 75,
+            "thickness": 5,
+            "price": 100
+        }
+    ],
+    "materials": [
+        {
+            "name": "acacia",
+            "price": 200
+        },
+        {
+            "name": "cedar",
+            "price": 50
+        }
+    ],
+    "finishings": [
+        {
+            "name": "paint",
+            "price": 95
+        },
+        {
+            "name": "enamel",
+            "price": 50
+        }
+    ]
+}

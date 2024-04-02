@@ -1,0 +1,39 @@
+{
+    "id": 13,
+    "name": "lamp",
+    "description": "a floor lamp",
+    "dimensions": [
+        {
+            "length": 140,
+            "width": 60,
+            "thickness": 5,
+            "price": 250
+        },
+        {
+            "length": 135,
+            "width": 55,
+            "thickness": 6,
+            "price": 125
+        }
+    ],
+    "materials": [
+        {
+            "name": "oak",
+            "price": 1000
+        },
+        {
+            "name": "pine",
+            "price": 500
+        }
+    ],
+    "finishings": [
+        {
+            "name": "paint",
+            "price": 70
+        },
+        {
+            "name": "enamel",
+            "price": 20
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "id": 22,
+    "name": "table",
+    "description": "a normal and ordinary table",
+    "dimensions": [
+        {
+            "length": 200,
+            "width": 80,
+            "thickness": 5,
+            "price": 600
+        },
+        {
+            "length": 190,
+            "width": 70,
+            "thickness": 6,
+            "price": 300
+        }
+    ],
+    "materials": [
+        {
+            "name": "oak",
+            "price": 1000
+        },
+        {
+            "name": "pine",
+            "price": 500
+        }
+    ],
+    "finishings": [
+        {
+            "name": "oil",
+            "price": 70
+        },
+        {
+            "name": "varnish",
+            "price": 20
+        }
+    ]
+}

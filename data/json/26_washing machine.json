@@ -1,0 +1,39 @@
+{
+  "id": 26,
+  "name": "washing machine",
+  "description": "a front-loading washing machine",
+  "dimensions": [
+    {
+      "length": 170,
+      "width": 90,
+      "thickness": 6,
+      "price": 600
+    },
+    {
+      "length": 165,
+      "width": 85,
+      "thickness": 7,
+      "price": 300
+    }
+  ],
+  "materials": [
+    {
+      "name": "maple",
+      "price": 600
+    },
+    {
+      "name": "cherry",
+      "price": 150
+    }
+  ],
+  "finishings": [
+    {
+      "name": "paint",
+      "price": 60
+    },
+    {
+      "name": "enamel",
+      "price": 25
+    }
+  ]
+}

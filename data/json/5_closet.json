@@ -1,0 +1,39 @@
+{
+    "id": 5,
+    "name": "closet",
+    "description": "a spacious closet",
+    "dimensions": [
+        {
+            "length": 150,
+            "width": 70,
+            "thickness": 6,
+            "price": 400
+        },
+        {
+            "length": 145,
+            "width": 65,
+            "thickness": 7,
+            "price": 200
+        }
+    ],
+    "materials": [
+        {
+            "name": "walnut",
+            "price": 800
+        },
+        {
+            "name": "birch",
+            "price": 300
+        }
+    ],
+    "finishings": [
+        {
+            "name": "lacquer",
+            "price": 80
+        },
+        {
+            "name": "dye",
+            "price": 30
+        }
+    ]
+}

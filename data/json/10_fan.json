@@ -1,0 +1,39 @@
+{
+    "id": 10,
+    "name": "fan",
+    "description": "a standing fan",
+    "dimensions": [
+        {
+            "length": 160,
+            "width": 90,
+            "thickness": 6,
+            "price": 500
+        },
+        {
+            "length": 155,
+            "width": 85,
+            "thickness": 7,
+            "price": 250
+        }
+    ],
+    "materials": [
+        {
+            "name": "mahogany",
+            "price": 400
+        },
+        {
+            "name": "cedar",
+            "price": 200
+        }
+    ],
+    "finishings": [
+        {
+            "name": "paint",
+            "price": 50
+        },
+        {
+            "name": "enamel",
+            "price": 20
+        }
+    ]
+}

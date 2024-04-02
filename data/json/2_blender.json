@@ -1,0 +1,39 @@
+{
+    "id": 2,
+    "name": "blender",
+    "description": "a hand blender",
+    "dimensions": [
+        {
+            "length": 120,
+            "width": 60,
+            "thickness": 5,
+            "price": 300
+        },
+        {
+            "length": 115,
+            "width": 55,
+            "thickness": 6,
+            "price": 150
+        }
+    ],
+    "materials": [
+        {
+            "name": "hickory",
+            "price": 700
+        },
+        {
+            "name": "willow",
+            "price": 350
+        }
+    ],
+    "finishings": [
+        {
+            "name": "varnish",
+            "price": 65
+        },
+        {
+            "name": "oil",
+            "price": 10
+        }
+    ]
+}

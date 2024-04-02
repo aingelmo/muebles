@@ -1,0 +1,39 @@
+{
+    "id": 20,
+    "name": "sofa",
+    "description": "a comfortable sofa",
+    "dimensions": [
+        {
+            "length": 90,
+            "width": 50,
+            "thickness": 3,
+            "price": 80
+        },
+        {
+            "length": 85,
+            "width": 45,
+            "thickness": 4,
+            "price": 40
+        }
+    ],
+    "materials": [
+        {
+            "name": "maple",
+            "price": 600
+        },
+        {
+            "name": "cherry",
+            "price": 150
+        }
+    ],
+    "finishings": [
+        {
+            "name": "varnish",
+            "price": 60
+        },
+        {
+            "name": "oil",
+            "price": 25
+        }
+    ]
+}

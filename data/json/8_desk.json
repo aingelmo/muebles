@@ -1,0 +1,39 @@
+{
+    "id": 8,
+    "name": "desk",
+    "description": "a work desk",
+    "dimensions": [
+        {
+            "length": 120,
+            "width": 60,
+            "thickness": 5,
+            "price": 300
+        },
+        {
+            "length": 115,
+            "width": 55,
+            "thickness": 6,
+            "price": 150
+        }
+    ],
+    "materials": [
+        {
+            "name": "beech",
+            "price": 900
+        },
+        {
+            "name": "spruce",
+            "price": 400
+        }
+    ],
+    "finishings": [
+        {
+            "name": "lacquer",
+            "price": 75
+        },
+        {
+            "name": "dye",
+            "price": 40
+        }
+    ]
+}

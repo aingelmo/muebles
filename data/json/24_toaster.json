@@ -1,0 +1,39 @@
+{
+    "id": 24,
+    "name": "toaster",
+    "description": "a bread toaster",
+    "dimensions": [
+        {
+            "length": 90,
+            "width": 80,
+            "thickness": 3,
+            "price": 160
+        },
+        {
+            "length": 85,
+            "width": 75,
+            "thickness": 4,
+            "price": 80
+        }
+    ],
+    "materials": [
+        {
+            "name": "elm",
+            "price": 300
+        },
+        {
+            "name": "poplar",
+            "price": 100
+        }
+    ],
+    "finishings": [
+        {
+            "name": "paint",
+            "price": 55
+        },
+        {
+            "name": "enamel",
+            "price": 15
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "id": 4,
+    "name": "chair",
+    "description": "a simple chair",
+    "dimensions": [
+        {
+            "length": 70,
+            "width": 60,
+            "thickness": 4,
+            "price": 100
+        },
+        {
+            "length": 65,
+            "width": 55,
+            "thickness": 3,
+            "price": 50
+        }
+    ],
+    "materials": [
+        {
+            "name": "mahogany",
+            "price": 400
+        },
+        {
+            "name": "cedar",
+            "price": 200
+        }
+    ],
+    "finishings": [
+        {
+            "name": "paint",
+            "price": 50
+        },
+        {
+            "name": "enamel",
+            "price": 20
+        }
+    ]
+}

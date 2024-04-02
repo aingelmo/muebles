@@ -1,0 +1,39 @@
+{
+    "id": 16,
+    "name": "modular bookshelf",
+    "description": "a versatile and adjustable bookshelf",
+    "dimensions": [
+        {
+            "length": 190,
+            "width": 80,
+            "thickness": 7,
+            "price": 700
+        },
+        {
+            "length": 185,
+            "width": 75,
+            "thickness": 8,
+            "price": 350
+        }
+    ],
+    "materials": [
+        {
+            "name": "teak",
+            "price": 1200
+        },
+        {
+            "name": "ash",
+            "price": 700
+        }
+    ],
+    "finishings": [
+        {
+            "name": "paint",
+            "price": 90
+        },
+        {
+            "name": "enamel",
+            "price": 35
+        }
+    ]
+}

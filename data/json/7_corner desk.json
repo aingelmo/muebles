@@ -1,0 +1,39 @@
+{
+    "id": 7,
+    "name": "corner desk",
+    "description": "a desk that fits in small spaces",
+    "dimensions": [
+        {
+            "length": 80,
+            "width": 70,
+            "thickness": 3,
+            "price": 120
+        },
+        {
+            "length": 75,
+            "width": 65,
+            "thickness": 4,
+            "price": 60
+        }
+    ],
+    "materials": [
+        {
+            "name": "beech",
+            "price": 900
+        },
+        {
+            "name": "spruce",
+            "price": 400
+        }
+    ],
+    "finishings": [
+        {
+            "name": "lacquer",
+            "price": 75
+        },
+        {
+            "name": "dye",
+            "price": 40
+        }
+    ]
+}
