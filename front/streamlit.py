@@ -25,7 +25,8 @@ if not desired_article:
     st.error("Please select an article")
     st.stop()
 
-article = requests.get(f"http://{API_HOST}/articles/{desired_article['doc_id']}").json()
+article_id = f"{desired_article['doc_id']}_{desired_article['name']}"
+article = requests.get(f"http://{API_HOST}/articles/{article_id}").json()
 
 # Use the format_func parameter to display only the names
 desired_material = st.selectbox(
