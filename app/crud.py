@@ -1,25 +1,18 @@
-from firebase_admin import credentials, firestore, initialize_app
+from typing import Any
 
-from app.config import CREDENTIALS, ENV
+from google.cloud import datastore
 
-# Initialize Firebase Admin SDK
-if ENV == "development":
-    cred = credentials.Certificate(CREDENTIALS)
-    initialize_app(cred)
-else:
-    initialize_app()
-
-db = firestore.client()
+client = datastore.Client(project="muebles-chuchi")
 
 
-def get_unique_items():
-    collection_ref = db.collection("articles")
-    docs = collection_ref.stream()
+def get_unique_items(collection_name: str = "articles") -> list[dict[str, str]] | None:
+    collection_ref = client.query(kind=collection_name)
+    docs = collection_ref.fetch()
 
     articles = []
     for doc in docs:
         name = doc.get("name")
-        doc_id = doc.id
+        doc_id = doc["id"]
         if name:
             articles.append({"name": name, "doc_id": doc_id})
 
@@ -29,12 +22,22 @@ def get_unique_items():
     return articles
 
 
-def get_document(collection_name, document_id):
-    doc_ref = db.collection(collection_name).document(document_id)
-    doc = doc_ref.get()
-    if doc.exists:
-        # Convert the document data to a dictionary
-        document_data = doc.to_dict()
-        return document_data
+def _entity_to_dict(
+    entity: datastore.Entity | list[datastore.Entity] | Any,
+) -> dict[str, Any] | list[dict[str, Any]] | Any:
+    if isinstance(entity, datastore.Entity):
+        return {key: _entity_to_dict(value) for key, value in entity.items()}
+    elif isinstance(entity, list):
+        return [_entity_to_dict(item) for item in entity]
     else:
+        return entity
+
+
+def get_document(collection_name: str, document_id: str):
+    key = client.key(collection_name, document_id)
+    entity = client.get(key)
+
+    if entity is None:
         raise Exception("Document not found")
+
+    return _entity_to_dict(entity)
