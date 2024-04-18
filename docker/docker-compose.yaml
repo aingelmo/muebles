@@ -1,0 +1,11 @@
+services:
+  api:
+    build:
+      context: ${PWD}
+      dockerfile: docker/fast_api.Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ~/.config:/root/.config
+    env_file:
+      - ${PWD}/.env
