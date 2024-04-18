@@ -4,7 +4,6 @@ from google.cloud import datastore
 
 client = datastore.Client(project="muebles-chuchi")
 
-
 def get_unique_items(collection_name: str = "articles") -> list[dict[str, str]] | None:
     collection_ref = client.query(kind=collection_name)
     docs = collection_ref.fetch()
