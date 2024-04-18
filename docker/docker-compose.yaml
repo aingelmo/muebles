@@ -4,6 +4,6 @@ services:
       context: ${PWD}
       dockerfile: docker/fast_api.Dockerfile
     ports:
-      - "8080:8080"
+      - "8080:80"
     volumes:
       - ~/.config:/root/.config
