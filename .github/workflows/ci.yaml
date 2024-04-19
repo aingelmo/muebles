@@ -27,6 +27,7 @@ jobs:
           tags: andrw3/muebles-api:latest
 
   cloud-run:
+    needs: docker
     runs-on: ubuntu-latest
     permissions:
       contents: "read"
