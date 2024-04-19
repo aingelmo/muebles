@@ -28,6 +28,7 @@ jobs:
 
   cloud-run:
     needs: docker
+    runs-on: ubuntu-latest
     permissions:
       contents: "read"
       id-token: "write"
