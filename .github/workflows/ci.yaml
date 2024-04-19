@@ -41,7 +41,7 @@ jobs:
           service_account: "939479177252-compute@developer.gserviceaccount.com"
 
       - name: Deploy to Cloud Run
-        uses: GoogleCloudPlatform/github-actions/cloud-run@main
+        uses: "google-github-actions/deploy-cloudrun@v2"
         with:
           service: muebles-api
           image: andrw3/muebles-api:latest
