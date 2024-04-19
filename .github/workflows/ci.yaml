@@ -38,12 +38,12 @@ jobs:
       - uses: "google-github-actions/auth@v2"
         with:
           project_id: ${{ secrets.GCP_PROJECT }}
-          workload_identity_provider: "projects/939479177252/locations/global/workloadIdentityPools/github/providers/my-repo"
-          service_account: "939479177252-compute@developer.gserviceaccount.com"
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Deploy to Cloud Run
         uses: "google-github-actions/deploy-cloudrun@v2"
         with:
-          service: muebles-api
+          service: ${{ secrets.GCP_CLOUD_RUN_SERVICE }}
           image: andrw3/muebles-api:latest
           region: us-central1
