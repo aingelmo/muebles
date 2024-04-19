@@ -2,7 +2,7 @@ services:
   api:
     build:
       context: ${PWD}
-      dockerfile: docker/fast_api.Dockerfile
+      dockerfile: docker/Dockerfile
     ports:
       - "8080:80"
     volumes:
