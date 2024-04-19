@@ -25,6 +25,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: andrw3/muebles-api:latest
+
   cloud-run:
     runs-on: ubuntu-latest
     permissions:
