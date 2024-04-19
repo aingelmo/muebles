@@ -4,7 +4,9 @@ from google.cloud import datastore
 
 client = datastore.Client(project="muebles-chuchi")
 
+
 def get_unique_items(collection_name: str = "articles") -> list[dict[str, str]] | None:
+    """Get unique items from a collection"""
     collection_ref = client.query(kind=collection_name)
     docs = collection_ref.fetch()
 
@@ -24,6 +26,7 @@ def get_unique_items(collection_name: str = "articles") -> list[dict[str, str]] 
 def _entity_to_dict(
     entity: datastore.Entity | list[datastore.Entity] | Any,
 ) -> dict[str, Any] | list[dict[str, Any]] | Any:
+    """Convert a Datastore entity to a dictionary."""
     if isinstance(entity, datastore.Entity):
         return {key: _entity_to_dict(value) for key, value in entity.items()}
     elif isinstance(entity, list):
@@ -32,7 +35,10 @@ def _entity_to_dict(
         return entity
 
 
-def get_document(collection_name: str, document_id: str):
+def get_document(
+    collection_name: str, document_id: str
+) -> dict[str, Any] | list[dict[str, Any]] | Any:
+    """Get a document from a collection"""
     key = client.key(collection_name, document_id)
     entity = client.get(key)
 
